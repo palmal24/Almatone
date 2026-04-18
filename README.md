@@ -1,50 +1,73 @@
-# Welcome to your Expo app 👋
+# Almatone
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+🌿 Nature Sounds
+1. Waterfall
+2. River Flow
+3. Ocean Waves
+4. Gentle Rain
+5. Heavy Rain on Window
+6. Thunderstorm
+7. Forest Birds
+8. Wind Through Trees
+9. Campfire Crackling
+10. Winter Blizzard
+🏠 Household Sounds
+1. Hair Dryer
+2. Hand Dryer
+3. Vacuum Cleaner
+4. Dishwasher Hum
+5. Washing Machine Spin
+6. Ceiling Fan
+7. Air Conditioner Hum
+8. Refrigerator Hum
+9. Electric Heater Fan
+10. Shower Running
+☕ Ambient / Café / Public Spaces
+1. Coffee Shop Murmur
+2. Library Ambience
+3. Office Background Noise
+4. Train Interior Hum
+5. Airplane Cabin Noise
+6. Bus Ride Ambience
+7. City Rain Street Sounds
+8. Distant Traffic at Night
+💤 Sleep / White Noise Variants
+1. White Noise
+2. Pink Noise
+3. Brown Noise
+4. Grey Noise
+5. Fan Noise Deep
+6. Soft Static Noise
+7. Low Hum Noise
+🔧 Mechanical / Repetitive Sounds
+1. Box Fan
+2. Oscillating Fan
+3. Engine Idle
+4. Spacecraft Cabin Hum
+5. Server Room Hum
+6. Computer Fan
+7. HVAC Vent Noise
+8. Generator Drone
+🌙 Calm / Meditation Sounds
+1. Tibetan Bowls
+2. Soft Wind Chimes
+3. Gentle Piano Rain Mix
+4. Zen Garden Stream
+5. Deep Cave Drips
+6. Night Crickets
+7. Soft Jungle Night
 
-## Get started
+----
 
-1. Install dependencies
+🔥 Best Sounds
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+1. Brown Noise
+2. Hair Dryer
+3. Vacuum Cleaner
+4. Thunderstorm
+5. Heavy Rain on Window
+6. Airplane Cabin Noise
+7. Box Fan
+8. River Flow
+9. Ocean Waves
+10. Coffee Shop Ambience
