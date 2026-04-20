@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
-import MainMenu from './components/MainMenu';
-import SplashScreen from './components/SplashScreen';
+import MainMenu from '../components/MainMenu';
+import SplashScreen from '../components/SplashScreen';
 
 export default function Index() {
   const [splashDone, setSplashDone] = useState(false);
