@@ -1,15 +1,15 @@
 export const SOUNDS = {
   nature: {
     blizzard: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/blizzard.jpeg'),
       audio: require('@assets/sounds/nature/blizzard.m4a')
     },
     campfire: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/campfire.jpeg'),
       audio: require('@assets/sounds/nature/campfire.m4a')
     },
     forest_birds: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/forest_birds.jpeg'),
       audio: require('@assets/sounds/nature/forest_birds.m4a')
     },
     gentle_rain: {
@@ -17,43 +17,43 @@ export const SOUNDS = {
       audio: require('@assets/sounds/nature/gentle_rain.m4a')
     },
     howling_wind: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/howling_wind.jpeg'),
       audio: require('@assets/sounds/nature/howling_wind.m4a')
     },
     light_rain: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/light_rain.jpeg'),
       audio: require('@assets/sounds/nature/light_rain.m4a')
     },
     lighting_strikes: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/lighting_strikes.jpeg'),
       audio: require('@assets/sounds/nature/lighting_strikes.m4a')
     },
     ocean_waves: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/ocean_waves.jpeg'),
       audio: require('@assets/sounds/nature/ocean_waves.m4a')
     },
     rain_dripping: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/rain_dripping.jpeg'),
       audio: require('@assets/sounds/nature/rain_dripping.m4a')
     },
     rain_tent: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/rain_tent.jpeg'),
       audio: require('@assets/sounds/nature/rain_tent.m4a')
     },
     river_flow: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/river_flow.jpeg'),
       audio: require('@assets/sounds/nature/river_flow.m4a')
     },
     thunderstorm: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/thunderstorm.jpeg'),
       audio: require('@assets/sounds/nature/thunderstorm.m4a')
     },
     waterfall: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/waterfall.jpeg'),
       audio: require('@assets/sounds/nature/waterfall.m4a')
     },
     windstorm: {
-      icon: require('@assets/images/icons/gentle_rain.png'),
+      icon: require('@assets/images/icons/nature/windstorm.jpeg'),
       audio: require('@assets/sounds/nature/windstorm.m4a')
     },
   },
