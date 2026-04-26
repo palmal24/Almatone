@@ -5,8 +5,8 @@ const CROSSFADE_MS = 1200;   // how long the crossfade lasts
 const POLL_MS = 100;          // how often we check position
 
 export function useSeamlessLoop(source: any) {
-  const playerA = useAudioPlayer(source);
-  const playerB = useAudioPlayer(source);
+  const playerA = useAudioPlayer();
+  const playerB = useAudioPlayer();
   const statusA = useAudioPlayerStatus(playerA);
   const statusB = useAudioPlayerStatus(playerB);
 
@@ -117,7 +117,11 @@ export function useSeamlessLoop(source: any) {
 
     active.current = 'A';
     crossfading.current = false;
+
     try {
+      playerA.replace(source);
+      playerB.replace(source);
+
       playerA.volume = 1;
       playerB.volume = 0;
       playerA.seekTo(0);
@@ -125,7 +129,7 @@ export function useSeamlessLoop(source: any) {
     } catch {}
 
     setIsPlaying(true);
-  }, [isPlaying, playerA, playerB]);
+  }, [isPlaying, playerA, playerB, source]);
 
   const pause = useCallback(() => {
     setIsPlaying(false);

@@ -1,5 +1,5 @@
-import { Asset } from 'expo-asset';
 import React, { useEffect, useRef } from 'react';
+import { usePreloadAssets } from '@hooks/usePreloadAssets';
 import {
   Animated,
   StyleSheet,
@@ -12,6 +12,8 @@ interface SplashScreenProps {
 }
 
 export default function SplashScreen({ onFinish }: SplashScreenProps) {
+  const assetsReady = usePreloadAssets();
+
   const logoOpacity = useRef(new Animated.Value(0)).current;
   const logoScale = useRef(new Animated.Value(0.8)).current;
   const taglineOpacity = useRef(new Animated.Value(0)).current;
@@ -20,23 +22,7 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
   const ripple3 = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
-    // Preload all icon images and sounds in parallel with animations
-    const preloadAssets = Asset.loadAsync([
-      require('@assets/images/icons/gentle_rain.png'),
-      require('@assets/images/icons/ocean_waves.png'),
-      require('@assets/images/icons/river_flow.png'),
-      require('@assets/images/icons/waterfall.png'),
-      require('@assets/images/icons/waterfall_short.png'),
-      require('@assets/images/icons/heavy_rain.png'),
-      require('@assets/sounds/calm/gentle_rain.m4a'),
-      require('@assets/sounds/calm/ocean_waves.m4a'),
-      require('@assets/sounds/calm/river_flow.m4a'),
-      require('@assets/sounds/calm/waterfall.m4a'),
-      require('@assets/sounds/calm/heavy_rain.m4a'),
-      require('@assets/sounds/calm/waterfall_short.m4a'),
-      require('@assets/sounds/nature/blizzard.m4a'),
-      require('@assets/sounds/nature/campfire.m4a'),
-    ]);
+    if (!assetsReady) return;
 
     // Ripple animations
     const createRipple = (anim: Animated.Value, delay: number) =>
@@ -64,51 +50,47 @@ export default function SplashScreen({ onFinish }: SplashScreenProps) {
     r2.start();
     r3.start();
 
-    const animationDone = new Promise<void>((resolve) => {
-      Animated.sequence([
-        Animated.delay(300),
-        Animated.parallel([
-          Animated.timing(logoOpacity, {
-            toValue: 1,
-            duration: 800,
-            useNativeDriver: true,
-          }),
-          Animated.spring(logoScale, {
-            toValue: 1,
-            friction: 6,
-            tension: 60,
-            useNativeDriver: true,
-          }),
-        ]),
-        Animated.delay(300),
-        Animated.timing(taglineOpacity, {
+    Animated.sequence([
+      Animated.delay(300),
+      Animated.parallel([
+        Animated.timing(logoOpacity, {
           toValue: 1,
-          duration: 600,
+          duration: 800,
           useNativeDriver: true,
         }),
-        Animated.delay(1200),
-        Animated.parallel([
-          Animated.timing(logoOpacity, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-          Animated.timing(taglineOpacity, {
-            toValue: 0,
-            duration: 500,
-            useNativeDriver: true,
-          }),
-        ]),
-      ]).start(() => resolve());
-    });
-
-    Promise.all([animationDone, preloadAssets]).then(() => {
+        Animated.spring(logoScale, {
+          toValue: 1,
+          friction: 6,
+          tension: 60,
+          useNativeDriver: true,
+        }),
+      ]),
+      Animated.delay(300),
+      Animated.timing(taglineOpacity, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+      Animated.delay(1200),
+      Animated.parallel([
+        Animated.timing(logoOpacity, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(taglineOpacity, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]),
+    ]).start(() => {
       r1.stop();
       r2.stop();
       r3.stop();
       onFinish();
     });
-  }, []);
+  }, [assetsReady]);
 
   const makeRippleStyle = (anim: Animated.Value) => ({
     opacity: anim.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 0.4, 0] }),
