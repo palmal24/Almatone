@@ -1,6 +1,6 @@
-import type { Category } from '../types/sound';
+import type { Category, SoundsLibrary } from '../types/sound';
 
-export const SOUNDS = {
+export const SOUNDS: SoundsLibrary = {
   nature: {
     blizzard:        { icon: require('@assets/images/icons/nature/blizzard.jpeg'),        audio: require('@assets/sounds/nature/blizzard.m4a') },
     campfire:        { icon: require('@assets/images/icons/nature/campfire.jpeg'),        audio: require('@assets/sounds/nature/campfire.m4a') },
