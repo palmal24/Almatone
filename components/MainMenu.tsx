@@ -1,3 +1,7 @@
+import SoundCard from '@components/SoundCard';
+import { useSeamlessLoop } from '@hooks/useSeamlessLoop';
+import { useSoundPlayers } from '@hooks/useSoundPlayers';
+
 import { setAudioModeAsync } from 'expo-audio';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -11,54 +15,7 @@ import {
   View,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { SOUNDS } from '../constants/sounds';
-import { useSeamlessLoop } from '../hooks/useSeamlessLoop';
-import SoundCard from './SoundCard';
-
-interface SoundItem {
-  id: string;
-  name: string;
-  icon: any;
-  sound: any;
-}
-
-interface Category {
-  id: string;
-  title: string;
-  sounds: SoundItem[];
-}
-
-const CATEGORIES: Category[] = [
-  {
-    id: 'nature',
-    title: 'Nature',
-    sounds: [
-      { id: 'gentle_rain', name: 'Gentle Rain', icon: SOUNDS.gentle_rain.icon,  sound: SOUNDS.gentle_rain.audio },
-      { id: 'ocean_waves', name: 'Ocean Waves', icon: SOUNDS.ocean_waves.icon,  sound: SOUNDS.ocean_waves.audio },
-      { id: 'river_flow',  name: 'River Flow',  icon: SOUNDS.river_flow.icon,   sound: SOUNDS.river_flow.audio },
-      { id: 'heavy_rain',  name: 'Heavy Rain',  icon: SOUNDS.heavy_rain.icon,   sound: SOUNDS.heavy_rain.audio },
-      { id: 'blizzard', name: 'Blizzard', icon: SOUNDS.nature.blizzard.icon, sound: SOUNDS.nature.blizzard.audio },
-      { id: 'campfire', name: 'Campfire', icon: SOUNDS.nature.campfire.icon, sound: SOUNDS.nature.campfire.audio },
-    ],
-  },
-  {
-    id: 'calm',
-    title: 'Calm',
-    sounds: [
-      { id: 'gentle_rain_2',   name: 'Gentle Rain',    icon: SOUNDS.gentle_rain.icon,     sound: SOUNDS.gentle_rain.audio },
-      { id: 'river_flow_2',    name: 'River Flow',     icon: SOUNDS.river_flow.icon,      sound: SOUNDS.river_flow.audio },
-      { id: 'waterfall_short', name: 'Waterfall Short',icon: SOUNDS.waterfall_short.icon, sound: SOUNDS.waterfall_short.audio },
-    ],
-  },
-  {
-    id: 'household',
-    title: 'Household',
-    sounds: [
-      { id: 'ocean_waves_2', name: 'Ocean Waves', icon: SOUNDS.ocean_waves.icon, sound: SOUNDS.ocean_waves.audio },
-      { id: 'waterfall',     name: 'Waterfall',   icon: SOUNDS.waterfall.icon,   sound: SOUNDS.waterfall.audio },
-    ],
-  },
-];
+import type { SoundItem } from '../types/sound';
 
 const MAX_SIMULTANEOUS = 3;
 
@@ -66,29 +23,7 @@ const MAX_SIMULTANEOUS = 3;
 type SeamlessPlayer = ReturnType<typeof useSeamlessLoop>;
 
 export default function MainMenu() {
-  const playerGentleRain     = useSeamlessLoop(SOUNDS.gentle_rain.audio);
-  const playerOceanWaves     = useSeamlessLoop(SOUNDS.ocean_waves.audio);
-  const playerRiverFlow      = useSeamlessLoop(SOUNDS.river_flow.audio);
-  const playerWaterfall      = useSeamlessLoop(SOUNDS.waterfall.audio);
-  const playerWaterfallShort = useSeamlessLoop(SOUNDS.waterfall_short.audio);
-  const playerHeavyRain      = useSeamlessLoop(SOUNDS.heavy_rain.audio);
-  const playerBlizzard      = useSeamlessLoop(SOUNDS.nature.blizzard.audio);
-  const playerCampfire      = useSeamlessLoop(SOUNDS.nature.campfire.audio);
-
-  // Keys MUST exactly match the id fields in CATEGORIES
-  const PLAYER_MAP: Record<string, SeamlessPlayer> = {
-    gentle_rain:      playerGentleRain,
-    gentle_rain_2:    playerGentleRain,
-    ocean_waves:      playerOceanWaves,
-    ocean_waves_2:    playerOceanWaves,
-    river_flow:       playerRiverFlow,
-    river_flow_2:     playerRiverFlow,
-    waterfall:        playerWaterfall,
-    waterfall_short:  playerWaterfallShort,
-    heavy_rain:       playerHeavyRain,
-    blizzard:         playerBlizzard,
-    campfire:         playerCampfire,
-  };
+  const { PLAYER_MAP, CATEGORIES } = useSoundPlayers();
 
   const [playingIds, setPlayingIds] = useState<Set<string>>(new Set());
   const stopBtnScale  = useRef(new Animated.Value(1)).current;
@@ -117,7 +52,11 @@ export default function MainMenu() {
       });
     } else {
       if (playingIds.size >= MAX_SIMULTANEOUS) return;
-      player.play();
+      try {
+        player.play();
+      } catch(e) {
+        console.warn('Playback failed', e);
+      }
       setPlayingIds((prev) => new Set([...prev, item.id]));
     }
   };

@@ -1,4 +1,3 @@
-// metro.config.js
 const path = require('path');
 const { getDefaultConfig } = require('expo/metro-config');
 
@@ -10,6 +9,9 @@ module.exports = {
     ...defaultConfig.resolver,
     alias: {
       '@assets': path.resolve(__dirname, 'assets'),
+      '@constants': path.resolve(__dirname, 'constants'),
+      '@hooks': path.resolve(__dirname, 'hooks'),
+      '@components': path.resolve(__dirname, 'components'),
     },
   },
 };
