@@ -2,6 +2,7 @@ import SoundCard from '@components/SoundCard';
 import { useSeamlessLoop } from '@hooks/useSeamlessLoop';
 import { useSoundPlayers } from '@hooks/useSoundPlayers';
 
+import logger from '@utils/logger';
 import { setAudioModeAsync } from 'expo-audio';
 import React, { useEffect, useRef, useState } from 'react';
 import {
@@ -39,7 +40,7 @@ export default function MainMenu() {
     const player = PLAYER_MAP[item.id];
 
     if (!player) {
-      console.error(`No player found for sound id: "${item.id}". Add it to PLAYER_MAP.`);
+      logger.error(`No player found for sound id: "${item.id}". Add it to PLAYER_MAP.`);
       return;
     }
 
@@ -55,7 +56,7 @@ export default function MainMenu() {
       try {
         player.play();
       } catch(e) {
-        console.warn('Playback failed', e);
+        logger.warn('Playback failed', e);
       }
       setPlayingIds((prev) => new Set([...prev, item.id]));
     }

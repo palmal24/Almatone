@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { SOUNDS } from '@constants/sounds';
+import logger from '@utils/logger';
 import { Asset } from 'expo-asset';
-import SOUNDS from '@constants/sounds';
+import { useEffect, useState } from 'react';
 
 export function usePreloadAssets() {
   const [ready, setReady] = useState(false);
@@ -20,7 +21,7 @@ export function usePreloadAssets() {
 
         await Asset.loadAsync(icons);
       } catch (e) {
-        console.warn('Icon preload failed:', e);
+        logger.warn('Icon preload failed:', e);
       } finally {
         if (isMounted) setReady(true);
       }
