@@ -51,6 +51,7 @@ export const SOUNDS: SoundsLibrary = {
     // rain_on_window:  { icon: require('@assets/images/icons/urban/rain_on_window.jpeg'),  audio: require('@assets/sounds/urban/rain_on_window.m4a') },
     // subway_rumble:   { icon: require('@assets/images/icons/urban/subway_rumble.jpeg'),   audio: require('@assets/sounds/urban/subway_rumble.m4a') },
     // train_ride:      { icon: require('@assets/images/icons/urban/train_ride.jpeg'),      audio: require('@assets/sounds/urban/train_ride.m4a') },
+    // barbershop
   },
 
   sleep: {
@@ -75,6 +76,24 @@ const CATEGORIES: Category[] = [
     title: 'Nature',
     sounds: [
       {
+        id: 'blizzard',
+        name: 'Blizzard',
+        icon: SOUNDS.nature.blizzard.icon,
+        sound: SOUNDS.nature.blizzard.audio,
+      },
+      {
+        id: 'campfire',
+        name: 'Campfire',
+        icon: SOUNDS.nature.campfire.icon,
+        sound: SOUNDS.nature.campfire.audio,
+      },
+      {
+        id: 'cave_drips',
+        name: 'Cave Drips',
+        icon: SOUNDS.nature.cave_drips.icon,
+        sound: SOUNDS.nature.cave_drips.audio,
+      },
+      {
         id: 'gentle_rain',
         name: 'Gentle Rain',
         icon: SOUNDS.nature.gentle_rain.icon,
@@ -91,18 +110,6 @@ const CATEGORIES: Category[] = [
         name: 'River Flow',
         icon: SOUNDS.nature.river_flow.icon,
         sound: SOUNDS.nature.river_flow.audio,
-      },
-      {
-        id: 'blizzard',
-        name: 'Blizzard',
-        icon: SOUNDS.nature.blizzard.icon,
-        sound: SOUNDS.nature.blizzard.audio,
-      },
-      {
-        id: 'campfire',
-        name: 'Campfire',
-        icon: SOUNDS.nature.campfire.icon,
-        sound: SOUNDS.nature.campfire.audio,
       },
     ],
   },
