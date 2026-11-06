@@ -4,68 +4,38 @@ import { useSeamlessLoop } from '@hooks/useSeamlessLoop';
 type SeamlessPlayer = ReturnType<typeof useSeamlessLoop>;
 
 export function useSoundPlayers() {
-  // One player per unique audio file
-  const playerGentleRain      = useSeamlessLoop(SOUNDS.nature.gentle_rain.audio);
-  const playerOceanWaves      = useSeamlessLoop(SOUNDS.nature.ocean_waves.audio);
-  const playerRiverFlow       = useSeamlessLoop(SOUNDS.nature.river_flow.audio);
-  const playerWaterfall       = useSeamlessLoop(SOUNDS.nature.waterfall.audio);
-  const playerBlizzard        = useSeamlessLoop(SOUNDS.nature.blizzard.audio);
-  const playerCampfire        = useSeamlessLoop(SOUNDS.nature.campfire.audio);
-  const playerCaveDrops       = useSeamlessLoop(SOUNDS.nature.cave_drips.audio);
-  const playerCricketNight    = useSeamlessLoop(SOUNDS.nature.cricket_night.audio);
-  const playerForestBirds     = useSeamlessLoop(SOUNDS.nature.forest_birds.audio);
-  const playerHowlingWind     = useSeamlessLoop(SOUNDS.nature.howling_wind.audio);
-  const playerLightRain       = useSeamlessLoop(SOUNDS.nature.light_rain.audio);
-  const playerLightningStrikes = useSeamlessLoop(SOUNDS.nature.lightning_strikes.audio);
-  const playerRainDripping    = useSeamlessLoop(SOUNDS.nature.rain_dripping.audio);
-  const playerRainTent        = useSeamlessLoop(SOUNDS.nature.rain_tent.audio);
-  const playerRustlingLeaves  = useSeamlessLoop(SOUNDS.nature.rustling_leaves.audio);
-  const playerThunderstorm    = useSeamlessLoop(SOUNDS.nature.thunderstorm.audio);
-  const playerTropicalRain    = useSeamlessLoop(SOUNDS.nature.tropical_rain.audio);
-  const playerWindstorm       = useSeamlessLoop(SOUNDS.nature.windstorm.audio);
+  // Hooks must be called in a fixed order
+  const players: SeamlessPlayer[] = [
+    useSeamlessLoop(SOUNDS.nature.blizzard.audio),
+    useSeamlessLoop(SOUNDS.nature.campfire.audio),
+    useSeamlessLoop(SOUNDS.nature.cave_drips.audio),
+    useSeamlessLoop(SOUNDS.nature.cricket_night.audio),
+    useSeamlessLoop(SOUNDS.nature.forest_birds.audio),
+    useSeamlessLoop(SOUNDS.nature.gentle_rain.audio),
+    useSeamlessLoop(SOUNDS.nature.howling_wind.audio),
+    useSeamlessLoop(SOUNDS.nature.light_rain.audio),
+    useSeamlessLoop(SOUNDS.nature.lightning_strikes.audio),
+    useSeamlessLoop(SOUNDS.nature.ocean_waves.audio),
+    useSeamlessLoop(SOUNDS.nature.rain_dripping.audio),
+    useSeamlessLoop(SOUNDS.nature.rain_tent.audio),
+    useSeamlessLoop(SOUNDS.nature.river_flow.audio),
+    useSeamlessLoop(SOUNDS.nature.rustling_leaves.audio),
+    useSeamlessLoop(SOUNDS.nature.thunderstorm.audio),
+    useSeamlessLoop(SOUNDS.nature.tropical_rain.audio),
+    useSeamlessLoop(SOUNDS.nature.waterfall.audio),
+    useSeamlessLoop(SOUNDS.nature.windstorm.audio),
+    useSeamlessLoop(SOUNDS.household.air_conditioner.audio),
+    useSeamlessLoop(SOUNDS.calm.binaural_beats_theta.audio),
+    useSeamlessLoop(SOUNDS.urban.bar_ambience.audio),
+    useSeamlessLoop(SOUNDS.sleep.delta_waves.audio),
+    useSeamlessLoop(SOUNDS.focus.brown_noise_focus.audio),
+  ];
 
-  const playerAirConditioner  = useSeamlessLoop(SOUNDS.household.air_conditioner.audio);
-
-  const playerBinauralBeatsTheta = useSeamlessLoop(SOUNDS.calm.binaural_beats_theta.audio);
-
-  const playerBarAmbience     = useSeamlessLoop(SOUNDS.urban.bar_ambience.audio);
-
-  const playerDeltaWaves      = useSeamlessLoop(SOUNDS.sleep.delta_waves.audio);
-
-  const playerBrownNoiseFocus = useSeamlessLoop(SOUNDS.focus.brown_noise_focus.audio);
-
-  // Keys MUST exactly match the id fields in CATEGORIES
-  const PLAYER_MAP: Record<string, SeamlessPlayer> = {
-    // Nature
-    gentle_rain:        playerGentleRain,
-    ocean_waves:        playerOceanWaves,
-    river_flow:         playerRiverFlow,
-    waterfall:          playerWaterfall,
-    blizzard:           playerBlizzard,
-    campfire:           playerCampfire,
-    cave_drips:         playerCaveDrops,
-    cricket_night:      playerCricketNight,
-    forest_birds:       playerForestBirds,
-    howling_wind:       playerHowlingWind,
-    light_rain:         playerLightRain,
-    lightning_strikes:  playerLightningStrikes,
-    rain_dripping:      playerRainDripping,
-    rain_tent:          playerRainTent,
-    rustling_leaves:    playerRustlingLeaves,
-    thunderstorm:       playerThunderstorm,
-    tropical_rain:      playerTropicalRain,
-    windstorm:          playerWindstorm,
-    // Household
-    air_conditioner:    playerAirConditioner,
-    // Calm
-    binaural_beats_theta: playerBinauralBeatsTheta,
-    // Urban
-    bar_ambience:       playerBarAmbience,
-    // Sleep
-    delta_waves:        playerDeltaWaves,
-    // Focus
-    brown_noise_focus:  playerBrownNoiseFocus,
-  };
+  // This order must be in sync with SOUNDS. Object insertion order follows the catalog.
+  const soundIds = Object.entries(SOUNDS).flatMap(([, category]) => Object.keys(category));
+  const PLAYER_MAP: Record<string, SeamlessPlayer> = Object.fromEntries(
+    soundIds.map((soundId, index) => [soundId, players[index]]),
+  );
 
   return { PLAYER_MAP, CATEGORIES };
 }
